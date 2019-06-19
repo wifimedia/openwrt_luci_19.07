@@ -898,14 +898,14 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	if has_80211r then
 		ieee80211r:depends({mode="ap", encryption="psk"})
 		ieee80211r:depends({mode="ap", encryption="psk2"})
-		ieee80211r:depends({mode="ap", encryption="psk-mixed"})
+		--ieee80211r:depends({mode="ap", encryption="psk-mixed"})
 		ieee80211r:depends({mode="ap", encryption="sae"})
 		ieee80211r:depends({mode="ap", encryption="sae-mixed"})
 		ieee80211r:depends({mode="ap-wds", encryption="psk"})
 		ieee80211r:depends({mode="ap-wds", encryption="psk2"})
-		ieee80211r:depends({mode="ap-wds", encryption="psk-mixed"})
+		--ieee80211r:depends({mode="ap-wds", encryption="psk-mixed"})
 		ieee80211r:depends({mode="ap-wds", encryption="sae"})
-		ieee80211r:depends({mode="ap-wds", encryption="sae-mixed"})
+		--ieee80211r:depends({mode="ap-wds", encryption="sae-mixed"})
 	end
 	ieee80211r.rmempty = true
 
@@ -918,7 +918,7 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	nasid:depends({mode="ap-wds", encryption="wpa2"})
 	nasid:depends({ieee80211r="1"})
 	nasid.rmempty = true
-
+--[[
 	mobility_domain = s:taboption("encryption", Value, "mobility_domain",
 			translate("Mobility Domain"),
 			translate("4-character hexadecimal ID"))
@@ -934,7 +934,7 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	reassociation_deadline.placeholder = "1000"
 	reassociation_deadline.datatype = "range(1000,65535)"
 	reassociation_deadline.rmempty = true
-
+]]--
 	ft_protocol = s:taboption("encryption", ListValue, "ft_over_ds", translate("FT protocol"))
 	ft_protocol:depends({ieee80211r="1"})
 	ft_protocol:value("1", translatef("FT over DS"))
@@ -947,7 +947,7 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	ft_psk_generate_local:depends({ieee80211r="1"})
 	ft_psk_generate_local.default = ft_psk_generate_local.enabled
 	ft_psk_generate_local.rmempty = false
-
+--[[
 	r0_key_lifetime = s:taboption("encryption", Value, "r0_key_lifetime",
 			translate("R0 Key Lifetime"), translate("minutes"))
 	r0_key_lifetime:depends({ieee80211r="1"})
@@ -962,28 +962,20 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	r1_key_holder.placeholder = "00004f577274"
 	r1_key_holder.datatype = "and(hexstring,rangelength(12,12))"
 	r1_key_holder.rmempty = true
-
+]]--
 	pmk_r1_push = s:taboption("encryption", Flag, "pmk_r1_push", translate("PMK R1 Push"))
-	pmk_r1_push:depends({ieee80211r="1"})
+	pmk_r1_push:depends({ieee80211r="1",ft_psk_generate_local=""})
 	pmk_r1_push.placeholder = "0"
 	pmk_r1_push.rmempty = true
 
 	r0kh = s:taboption("encryption", DynamicList, "r0kh", translate("External R0 Key Holder List"),
-		translate("List of R0KHs in the same Mobility Domain. " ..
-			"<br />Format: MAC-address,NAS-Identifier,128-bit key as hex string. " ..
-			"<br />This list is used to map R0KH-ID (NAS Identifier) to a destination " ..
-			"MAC address when requesting PMK-R1 key from the R0KH that the STA " ..
-			"used during the Initial Mobility Domain Association."))
-	r0kh:depends({ieee80211r="1"})
+		translate("List of R0KHs in the same Mobility Domain. "))
+	r0kh:depends({ieee80211r="1", ft_psk_generate_local=""})
 	r0kh.rmempty = true
 
 	r1kh = s:taboption("encryption", DynamicList, "r1kh", translate("External R1 Key Holder List"),
-		translate ("List of R1KHs in the same Mobility Domain. "..
-			"<br />Format: MAC-address,R1KH-ID as 6 octets with colons,128-bit key as hex string. "..
-			"<br />This list is used to map R1KH-ID to a destination MAC address " ..
-			"when sending PMK-R1 key from the R0KH. This is also the " ..
-			"list of authorized R1KHs in the MD that can request PMK-R1 keys."))
-	r1kh:depends({ieee80211r="1"})
+		translate ("List of R1KHs in the same Mobility Domain. "))
+	r1kh:depends({ieee80211r="1", ft_psk_generate_local=""})
 	r1kh.rmempty = true
 	-- End of 802.11r options
 
