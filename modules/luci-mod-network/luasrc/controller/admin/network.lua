@@ -100,7 +100,7 @@ function index()
 				end)
 		end
 
-
+--[[
 		if nixio.fs.access("/etc/config/dhcp") then
 			page = node("admin", "network", "dhcp")
 			page.target = cbi("admin_network/dhcp")
@@ -112,7 +112,7 @@ function index()
 			page.title  = _("Hostnames")
 			page.order  = 40
 		end
-
+]]--
 		page  = node("admin", "network", "routes")
 		page.target = cbi("admin_network/routes")
 		page.title  = _("Static Routes")
