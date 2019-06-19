@@ -199,6 +199,7 @@ end
 if has_ntpd then
 
 	-- timeserver setup was requested, create section and reload page
+	--[[
 	if m:formvalue("cbid.system._timeserver._enable") then
 		m.uci:section("system", "timeserver", "ntp",
 			{
@@ -210,7 +211,7 @@ if has_ntpd then
 		luci.http.redirect(luci.dispatcher.build_url("admin/system", arg[1]))
 		return
 	end
-
+]]--
 	local has_section = false
 	m.uci:foreach("system", "timeserver", 
 		function(s) 
