@@ -445,7 +445,7 @@ end
 
 if hwtype == "mac80211" then
 	if fs.access("/usr/sbin/iw") then
-		mode:value("mesh", "802.11s")
+		mode:value("mesh", "Mesh")
 	end
 
 	mode:value("ahdemo", translate("Pseudo Ad-Hoc (ahdemo)"))
@@ -748,7 +748,7 @@ elseif hwtype == "broadcom" then
 	encr:value("psk+psk2", "WPA-PSK/WPA2-PSK Mixed Mode")
 end
 
-auth_server = s:taboption("encryption", Value, "auth_server", translate("Radius-Authentication-Server"))
+auth_server = s:taboption("encryption", Value, "auth_server", translate("Radius Auth Server"))
 auth_server:depends({mode="ap", encryption="wpa"})
 auth_server:depends({mode="ap", encryption="wpa2"})
 auth_server:depends({mode="ap-wds", encryption="wpa"})
@@ -756,7 +756,7 @@ auth_server:depends({mode="ap-wds", encryption="wpa2"})
 auth_server.rmempty = true
 auth_server.datatype = "host(0)"
 
-auth_port = s:taboption("encryption", Value, "auth_port", translate("Radius-Authentication-Port"), translatef("Default %d", 1812))
+auth_port = s:taboption("encryption", Value, "auth_port", translate("Radius Auth Port"), translatef("Default %d", 1812))
 auth_port:depends({mode="ap", encryption="wpa"})
 auth_port:depends({mode="ap", encryption="wpa2"})
 auth_port:depends({mode="ap-wds", encryption="wpa"})
@@ -764,7 +764,7 @@ auth_port:depends({mode="ap-wds", encryption="wpa2"})
 auth_port.rmempty = true
 auth_port.datatype = "port"
 
-auth_secret = s:taboption("encryption", Value, "auth_secret", translate("Radius-Authentication-Secret"))
+auth_secret = s:taboption("encryption", Value, "auth_secret", translate("Radius Auth Secret"))
 auth_secret:depends({mode="ap", encryption="wpa"})
 auth_secret:depends({mode="ap", encryption="wpa2"})
 auth_secret:depends({mode="ap-wds", encryption="wpa"})
@@ -772,7 +772,7 @@ auth_secret:depends({mode="ap-wds", encryption="wpa2"})
 auth_secret.rmempty = true
 auth_secret.password = true
 
-acct_server = s:taboption("encryption", Value, "acct_server", translate("Radius-Accounting-Server"))
+acct_server = s:taboption("encryption", Value, "acct_server", translate("Radius Acc Server"))
 acct_server:depends({mode="ap", encryption="wpa"})
 acct_server:depends({mode="ap", encryption="wpa2"})
 acct_server:depends({mode="ap-wds", encryption="wpa"})
@@ -780,7 +780,7 @@ acct_server:depends({mode="ap-wds", encryption="wpa2"})
 acct_server.rmempty = true
 acct_server.datatype = "host(0)"
 
-acct_port = s:taboption("encryption", Value, "acct_port", translate("Radius-Accounting-Port"), translatef("Default %d", 1813))
+acct_port = s:taboption("encryption", Value, "acct_port", translate("Radius Acc Port"), translatef("Default %d", 1813))
 acct_port:depends({mode="ap", encryption="wpa"})
 acct_port:depends({mode="ap", encryption="wpa2"})
 acct_port:depends({mode="ap-wds", encryption="wpa"})
@@ -788,7 +788,7 @@ acct_port:depends({mode="ap-wds", encryption="wpa2"})
 acct_port.rmempty = true
 acct_port.datatype = "port"
 
-acct_secret = s:taboption("encryption", Value, "acct_secret", translate("Radius-Accounting-Secret"))
+acct_secret = s:taboption("encryption", Value, "acct_secret", translate("Radius Acc Secret"))
 acct_secret:depends({mode="ap", encryption="wpa"})
 acct_secret:depends({mode="ap", encryption="wpa2"})
 acct_secret:depends({mode="ap-wds", encryption="wpa"})
