@@ -979,6 +979,18 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 	r1kh.rmempty = true
 	-- End of 802.11r options
 
+	--For 802.11i support
+	ieee80211i = s:taboption("encryption", Flag, "rsn_preauth", "Fast Roaming OKC")
+	--ieee80211i:depends({rsn_preauth="1", ieee80211r=""})
+	ieee80211i.rmempty = false
+	ieee80211i:depends({encryption="wpa2"})
+	ieee80211i:depends({encryption="psk2"})
+	ieee80211i:depends({encryption="wpa-mixed"})
+	ieee80211i:depends({encryption="psk-mixed"})
+	if ({encryption}) == "none" then
+		ieee80211i:value("0")
+	end
+	--End 802.11i
 	eaptype = s:taboption("encryption", ListValue, "eap_type", translate("EAP-Method"))
 	eaptype:value("tls",  "TLS")
 	eaptype:value("ttls", "TTLS")
