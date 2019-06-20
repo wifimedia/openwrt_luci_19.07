@@ -237,8 +237,8 @@ if hwtype == "mac80211" then
 	legacyrates.rmempty = false
 	legacyrates.default = "1"
 
-	s:taboption("advanced", Value, "distance", translate("Distance Optimization"),
-		translate("Distance to farthest network member in meters."))
+	--s:taboption("advanced", Value, "distance", translate("Distance Optimization"),
+	--	translate("Distance to farthest network member in meters."))
 
 	-- external antenna profiles
 	local eal = iw and iw.extant
@@ -252,16 +252,16 @@ if hwtype == "mac80211" then
 		end
 	end
 
-	s:taboption("advanced", Value, "frag", translate("Fragmentation Threshold"))
-	s:taboption("advanced", Value, "rts", translate("RTS/CTS Threshold"))
+	--s:taboption("advanced", Value, "frag", translate("Fragmentation Threshold"))
+	--s:taboption("advanced", Value, "rts", translate("RTS/CTS Threshold"))
 	
 	s:taboption("advanced", Flag, "noscan", translate("Force 40MHz mode"),
 		translate("Always use 40MHz channels even if the secondary channel overlaps. Using this option does not comply with IEEE 802.11n-2009!")).optional = true
 
-	beacon_int = s:taboption("advanced", Value, "beacon_int", translate("Beacon Interval"))
-	beacon_int.optional = true
-	beacon_int.placeholder = 100
-	beacon_int.datatype = "range(15,65535)"
+	--beacon_int = s:taboption("advanced", Value, "beacon_int", translate("Beacon Interval"))
+	--beacon_int.optional = true
+	--beacon_int.placeholder = 100
+	--beacon_int.datatype = "range(15,65535)"
 end
 
 
@@ -1130,9 +1130,10 @@ if hwtype == "mac80211" or hwtype == "prism2" then
 end
 
 -- ieee802.11w options
---[[
+
 if hwtype == "mac80211" then
 	local has_80211w = (os.execute("hostapd -v11w 2>/dev/null || hostapd -veap 2>/dev/null") == 0)
+--[[	
 	if has_80211w then
 		ieee80211w = s:taboption("encryption", ListValue, "ieee80211w",
 			translate("802.11w Management Frame Protection"),
@@ -1177,8 +1178,7 @@ if hwtype == "mac80211" then
 	end
 ]]--
 	key_retries = s:taboption("encryption", Flag, "wpa_disable_eapol_key_retries",
-		translate("Enable key reinstallation (KRACK) countermeasures"),
-		translate("Complicates key reinstallation attacks on the client side by disabling retransmission of EAPOL-Key frames that are used to install keys. This workaround might cause interoperability issues and reduced robustness of key negotiation especially in environments with heavy traffic load."))
+		translate("Enable key reinstallation (KRACK) countermeasures"))
 
 	key_retries:depends({mode="ap", encryption="wpa2"})
 	key_retries:depends({mode="ap", encryption="psk2"})
