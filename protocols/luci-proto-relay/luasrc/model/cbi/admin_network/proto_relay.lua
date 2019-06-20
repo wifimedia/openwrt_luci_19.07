@@ -6,11 +6,11 @@ local map, section, net = ...
 local ipaddr, network
 local forward_bcast, forward_dhcp, gateway, expiry, retry, table
 
---[[
+
 ipaddr = section:taboption("general", Value, "ipaddr",
 	translate("Local IPv4 address"),
 	translate("Address to access local relay bridge"))
-]]--
+
 ipaddr.datatype = "ip4addr"
 
 --[[
