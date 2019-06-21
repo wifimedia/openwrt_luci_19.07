@@ -398,7 +398,7 @@ ssid:depends({mode="wds"})
 
 bssid = s:taboption("general", Value, "bssid", translate("<abbr title=\"Basic Service Set Identifier\">BSSID</abbr>"))
 bssid.datatype = "macaddr"
---[[
+
 network = s:taboption("general", Value, "network", translate("Network"),
 	translate("Choose the network(s) you want to attach to this wireless interface or " ..
 		"fill out the <em>create</em> field to define a new network."))
@@ -440,7 +440,7 @@ function network.write(self, section, value)
 		end
 	end
 end
-]]--
+
 -------------------- MAC80211 Interface ----------------------
 
 if hwtype == "mac80211" then
