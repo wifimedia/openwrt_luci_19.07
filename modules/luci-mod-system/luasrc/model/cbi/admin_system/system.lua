@@ -133,7 +133,7 @@ end
 --
 -- Language & Style
 --
-
+--[[
 o = s:taboption("language", ListValue, "_lang", translate("Language"))
 o:value("auto")
 
@@ -168,7 +168,7 @@ end
 function o.write(self, section, value)
 	m.uci:set("luci", "main", "mediaurlbase", value)
 end
-
+]]--
 
 --
 -- Advanced
@@ -258,14 +258,14 @@ if has_ntpd then
 		o = s:option(Flag, "enable_server", translate("Provide NTP server"))
 		o:depends("enable", "1")
 
-
+--[[
 		o = s:option(DynamicList, "server", translate("NTP server candidates"))
 		o.datatype = "host(0)"
 		o:depends("enable", "1")
 
 		-- retain server list even if disabled
 		function o.remove() end
-
+]]--
 	end
 end
 
