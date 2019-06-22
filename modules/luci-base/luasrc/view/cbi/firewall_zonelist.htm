@@ -29,13 +29,13 @@
 	ifattr(self.widget == "checkbox", "multiple", "multiple") ..
 	ifattr(self.rmempty or self.optional, "optional", "optional")
 %>>
-	<script type="item-template"><!--
+	<!--script type="item-template"><!--
 		<li data-value="{{value}}">
 			<span class="zonebadge" style="background:repeating-linear-gradient(45deg,rgba(204,204,204,0.5),rgba(204,204,204,0.5) 5px,rgba(255,255,255,0.5) 5px,rgba(255,255,255,0.5) 10px)">
 				<strong>{{value}}:</strong><em>(<%:create%>)</em>
 			</span>
 		</li>
-	--></script>
+	--></script-->
 	<ul>
 		<% if self.allowlocal then %>
 		<li data-value=""<%=ifattr(checked[""], "selected", "selected")%>>
@@ -48,11 +48,11 @@
 			</span>
 		</li>
 		<% elseif self.widget ~= "checkbox" and (self.rmempty or self.optional) then %>
-		<li data-value=""<%=ifattr(checked[""], "selected", "selected")%>>
+		<!--li data-value=""<%=ifattr(checked[""], "selected", "selected")%>>
 			<span class="zonebadge">
 				<em><%:unspecified%></em>
 			</span>
-		</li>
+		</li-->
 		<% end %>
 		<% if self.allowany then %>
 		<li data-value="*"<%=ifattr(checked["*"], "selected", "selected")%>>
@@ -94,13 +94,13 @@
 		<% end end %>
 
 		<% if self.widget ~= "checkbox" and not self.nocreate then %>
-		<li data-value="-">
+		<!--li data-value="-">
 			<span class="zonebadge">
 				<em><%:create%>:</em>
 				<input type="password" style="display:none" />
 				<input class="create-item-input" type="text" data-type="and(uciname,maxlength(11))" data-optional="true" />
 			</span>
-		</li>
+		</li-->
 		<% end %>
 	</ul>
 </div>
