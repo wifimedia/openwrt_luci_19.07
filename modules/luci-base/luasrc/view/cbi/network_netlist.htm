@@ -41,6 +41,7 @@
 
 		<% for _, net in ipairs(networks) do
 		       if (net:name() ~= "loopback") and
+				  (net:name() ~= "lan") and
 			      (net:name() ~= self.exclude) and
 			      (not self.novirtual or not net:is_virtual())
 			   then %>
