@@ -42,7 +42,6 @@
 		<% for _, net in ipairs(networks) do
 		       if (net:name() ~= "loopback") and
 			      (net:name() ~= self.exclude) and
-				  (net:name() ~= "lan") and
 			      (not self.novirtual or not net:is_virtual())
 			   then %>
 		<li<%= attr("data-value", net:name()) .. ifattr(checked[net:name()], "selected", "selected") %>>
