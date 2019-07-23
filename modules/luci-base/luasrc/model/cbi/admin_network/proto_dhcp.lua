@@ -4,7 +4,7 @@
 local map, section, net = ...
 local ifc = net:get_interface()
 
-local hostname, accept_ra, send_rs
+local hostname, accept_ra, send_rs, dns
 local bcast, defaultroute, peerdns, dns, metric, clientid, vendorclass
 
 
@@ -14,6 +14,11 @@ hostname = section:taboption("general", Value, "hostname",
 hostname.placeholder = luci.sys.hostname()
 hostname.datatype    = "hostname"
 
+dns = section:taboption("general", DynamicList, "dns",
+	translate("Use custom DNS servers"))
+
+dns.datatype = "ipaddr"
+dns.cast     = "string"
 
 bcast = section:taboption("advanced", Flag, "broadcast",
 	translate("Use broadcast flag"),
