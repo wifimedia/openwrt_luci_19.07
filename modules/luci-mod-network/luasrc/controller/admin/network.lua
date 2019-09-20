@@ -93,7 +93,7 @@ function index()
 			uci:foreach("network", "interface",
 				function (section)
 					local ifc = section[".name"]
-					if ifc ~= "loopback" and ifc ~= "lan" and ifc ~= "local" then
+					if ifc ~= "loopback" and ifc ~= "lan" and ifc ~= "local" then -- remove ifc ~= "lan" to show interface lan
 						entry({"admin", "network", "network", ifc},
 						true, ifc:upper())
 					end
