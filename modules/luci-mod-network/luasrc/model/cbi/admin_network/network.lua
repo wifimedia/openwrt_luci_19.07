@@ -19,7 +19,7 @@ local _, net
 local ifaces, netlist = { }, { }
 
 for _, net in ipairs(ntm:get_networks()) do
-	if net:name() ~= "loopback" and net:name() ~= "local" and net:name() ~= "lan" then
+	if net:name() ~= "loopback" and net:name() ~= "local" then
 		local zn = net:zonename()
 		local z = zn and fwm:get_zone(zn) or fwm:get_zone_by_network(net:name())
 
