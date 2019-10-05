@@ -133,7 +133,7 @@ end
 --
 -- Language & Style
 --
-
+--[[
 o = s:taboption("language", ListValue, "_lang", translate("Language"))
 o:value("auto")
 
@@ -168,7 +168,7 @@ end
 function o.write(self, section, value)
 	m.uci:set("luci", "main", "mediaurlbase", value)
 end
-
+]]--
 
 --
 -- Advanced
@@ -199,6 +199,7 @@ end
 if has_ntpd then
 
 	-- timeserver setup was requested, create section and reload page
+	--[[
 	if m:formvalue("cbid.system._timeserver._enable") then
 		m.uci:section("system", "timeserver", "ntp",
 			{
@@ -210,7 +211,7 @@ if has_ntpd then
 		luci.http.redirect(luci.dispatcher.build_url("admin/system", arg[1]))
 		return
 	end
-
+]]--
 	local has_section = false
 	m.uci:foreach("system", "timeserver", 
 		function(s) 
@@ -257,14 +258,14 @@ if has_ntpd then
 		o = s:option(Flag, "enable_server", translate("Provide NTP server"))
 		o:depends("enable", "1")
 
-
+--[[
 		o = s:option(DynamicList, "server", translate("NTP server candidates"))
 		o.datatype = "host(0)"
 		o:depends("enable", "1")
 
 		-- retain server list even if disabled
 		function o.remove() end
-
+]]--
 	end
 end
 

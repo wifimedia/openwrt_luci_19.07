@@ -172,7 +172,7 @@ if m:formvalue("cbid.dhcp._enable._enable") then
 		interface = arg[1],
 		start     = "100",
 		limit     = "150",
-		leasetime = "12h"
+		leasetime = "1h"
 	})
 
 	m.uci:save("dhcp")
@@ -250,8 +250,8 @@ end
 auto = s:taboption("general", Flag, "auto", translate("Bring up on boot"))
 auto.default = (net:proto() == "none") and auto.disabled or auto.enabled
 
-delegate = s:taboption("advanced", Flag, "delegate", translate("Use builtin IPv6-management"))
-delegate.default = delegate.enabled
+--delegate = s:taboption("advanced", Flag, "delegate", translate("Use builtin IPv6-management"))
+--delegate.default = delegate.enabled
 
 force_link = s:taboption("advanced", Flag, "force_link",
 	translate("Force link"),
@@ -519,7 +519,7 @@ if has_dnsmasq and net:proto() == "static" then
 				n:depends("ignore", "")
 			end
 		end
-
+--[[
 		o = s:taboption("ipv6", ListValue, "ra", translate("Router Advertisement-Service"))
 		o:value("", translate("disabled"))
 		o:value("server", translate("server mode"))
@@ -553,7 +553,7 @@ if has_dnsmasq and net:proto() == "static" then
 
 		s:taboption("ipv6", DynamicList, "dns", translate("Announced DNS servers"))
 		s:taboption("ipv6", DynamicList, "domain", translate("Announced DNS domains"))
-
+]]--
 	else
 		m2 = nil
 	end
