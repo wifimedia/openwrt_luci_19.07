@@ -93,14 +93,14 @@ function index()
 			uci:foreach("network", "interface",
 				function (section)
 					local ifc = section[".name"]
-					if ifc ~= "loopback" then
+					if ifc ~= "loopback" and ifc ~= "lan" and ifc ~= "local" then
 						entry({"admin", "network", "network", ifc},
 						true, ifc:upper())
 					end
 				end)
 		end
 
-
+--[[
 		if nixio.fs.access("/etc/config/dhcp") then
 			page = node("admin", "network", "dhcp")
 			page.target = cbi("admin_network/dhcp")
@@ -112,7 +112,7 @@ function index()
 			page.title  = _("Hostnames")
 			page.order  = 40
 		end
-
+]]--
 		page  = node("admin", "network", "routes")
 		page.target = cbi("admin_network/routes")
 		page.title  = _("Static Routes")
@@ -174,9 +174,9 @@ function wifi_add()
 	if dev then
 		local net = dev:add_wifinet({
 			mode       = "ap",
-			ssid       = "OpenWrt",
+			ssid       = "OPENWIFI",
 			encryption = "none",
-			disabled   = 1
+			disabled   = 0
 		})
 
 		ntm:save("wireless")

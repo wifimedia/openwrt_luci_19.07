@@ -14,7 +14,7 @@ function index()
 	entry({"admin", "system", "admin"}, firstchild(), _("Administration"), 2)
 	entry({"admin", "system", "admin", "password"}, template("admin_system/password"), _("Router Password"), 1)
 	entry({"admin", "system", "admin", "password", "json"}, post("action_password"))
-
+--[[
 	if fs.access("/etc/config/dropbear") then
 		entry({"admin", "system", "admin", "dropbear"}, cbi("admin_system/dropbear"), _("SSH Access"), 2)
 		entry({"admin", "system", "admin", "sshkeys"}, template("admin_system/sshkeys"), _("SSH-Keys"), 3)
@@ -34,8 +34,8 @@ function index()
 	if number > 0 then
 		entry({"admin", "system", "leds"}, cbi("admin_system/leds"), _("<abbr title=\"Light Emitting Diode\">LED</abbr> Configuration"), 60)
 	end
-
-	entry({"admin", "system", "flashops"}, call("action_flashops"), _("Backup / Flash Firmware"), 70)
+]]--
+	entry({"admin", "system", "flashops"}, call("action_flashops"), _("Flash Firmware"), 70)
 	entry({"admin", "system", "flashops", "reset"}, post("action_reset"))
 	entry({"admin", "system", "flashops", "backup"}, post("action_backup"))
 	entry({"admin", "system", "flashops", "backupmtdblock"}, post("action_backupmtdblock"))

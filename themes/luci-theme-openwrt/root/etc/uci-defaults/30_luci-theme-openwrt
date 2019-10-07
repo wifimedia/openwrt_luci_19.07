@@ -7,5 +7,5 @@ if [ "$PKG_UPGRADE" != 1 ]; then
 		commit luci
 	EOF
 fi
-
+rm /usr/lib/lua/luci/controller/opkg.lua
 exit 0
