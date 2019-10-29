@@ -13,7 +13,7 @@ ipaddr = section:taboption("general", Value, "ipaddr",
 
 ipaddr.datatype = "ip4addr"
 
-
+--[[
 network = s:taboption("general", DynamicList, "network", translate("Relay between networks"))
 network.widget = "checkbox"
 network.exclude = arg[1]
@@ -66,3 +66,4 @@ table = section:taboption("advanced", Value, "table",
 
 table.placeholder = "16800"
 table.datatype    = "range(0,65535)"
+]]--
