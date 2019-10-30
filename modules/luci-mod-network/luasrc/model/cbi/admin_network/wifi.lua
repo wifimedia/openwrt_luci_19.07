@@ -495,6 +495,9 @@ if hwtype == "mac80211" then
 			return mode
 		end
 	end
+	maxassoc = s:taboption("general", Value, "maxassoc", translate("Max Clients"))
+	maxassoc:depends({mode="ap"})
+	maxassoc:depends({mode="ap-wds"})
 
 	hidden = s:taboption("general", Flag, "hidden", translate("Hide <abbr title=\"Extended Service Set Identifier\">ESSID</abbr>"))
 	hidden:depends({mode="ap"})
