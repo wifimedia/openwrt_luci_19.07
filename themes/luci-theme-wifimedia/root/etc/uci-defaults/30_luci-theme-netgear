@@ -1,0 +1,8 @@
+#!/bin/sh
+uci batch <<-EOF
+	set luci.themes.Wifimedia=/luci-static/wifimedia
+	set luci.main.mediaurlbase=/luci-static/wifimedia
+	set luci.main.lang=en
+	commit luci
+EOF
+exit 0
